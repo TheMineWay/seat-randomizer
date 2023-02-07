@@ -5,7 +5,6 @@ import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 const auth = getAuth();
 
 let loginState = ref<{ user?: User | null }>({ user: null });
-console.log(loginState);
 
 onAuthStateChanged(auth, (user) => {
   if (user) loginState.value = { user };
