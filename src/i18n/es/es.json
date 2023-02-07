@@ -13,7 +13,13 @@
         "bar": {
             "signOut": {
                 "Text": "Cerrar sesión"
+            },
+            "names": {
+                "Text": "Nombres"
             }
         }
+    },
+    "namesDrawer": {
+        "Title": "Nombres"
     }
 }

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { getAuth, signOut as firebaseSignOut } from "firebase/auth";
+import { ref } from "vue";
 
 type Props = {
   children: Object;
@@ -10,14 +11,26 @@ const props = defineProps<Props>();
 const signOut = () => {
   firebaseSignOut(getAuth());
 };
+
+const namesDrawerVisibility = ref(false);
+
+const displayNamesDrawer = () => (namesDrawerVisibility.value = true);
+const hideNamesDrawer = () => (namesDrawerVisibility.value = false);
 </script>
 
 <template>
+  <ChildrenNamesDrawer
+    :visible="namesDrawerVisibility"
+    :onClose="hideNamesDrawer"
+  />
   <a-layout class="layout">
     <a-layout-header>
       <div class="logo" />
       <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-        <a-menu-item key="1" @click="signOut">{{
+        <a-menu-item key="1" @click="displayNamesDrawer">{{
+          $t("layout.bar.names.Text")
+        }}</a-menu-item>
+        <a-menu-item key="2" @click="signOut">{{
           $t("layout.bar.signOut.Text")
         }}</a-menu-item>
       </a-menu>
@@ -39,8 +52,9 @@ const signOut = () => {
 
 <script lang="ts">
 import { defineComponent, defineProps } from "vue";
+import ChildrenNamesDrawer from "../app/children-names/ChildrenNamesDrawer.vue";
 
-export default defineComponent({});
+export default defineComponent({ components: { ChildrenNamesDrawer } });
 </script>
 <style>
 .layout {
