@@ -14,7 +14,9 @@ onAuthStateChanged(auth, (user) => {
 
 <template>
   <div class="home">
-    <div v-if="loginState.user">{{ $t("test") }}</div>
+    <div v-if="loginState.user">
+      <LayoutComponent :children="ClassroomView" />
+    </div>
     <LoginComponent v-else-if="loginState.user !== null" />
   </div>
 </template>
@@ -30,9 +32,11 @@ div.home {
 <script lang="ts">
 import { defineComponent } from "vue";
 import LoginComponent from "../components/auth/login/LoginComponent.vue";
+import LayoutComponent from "../components/layout/LayoutComponent.vue";
+import ClassroomView from "../views/app/ClassroomView.vue";
 
 export default defineComponent({
   name: "HomeView",
-  components: { LoginComponent },
+  components: { LoginComponent, LayoutComponent },
 });
 </script>
