@@ -4,5 +4,16 @@ import './registerServiceWorker';
 import router from './router';
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import { createI18n } from 'vue-i18n'
 
-createApp(App).use(Antd).use(router).mount('#app')
+const messages = {
+    es: require('./i18n/es/es.json'),
+}
+
+const i18n = createI18n({
+    locale: 'es',
+    fallbackLocale: 'es',
+    messages,
+});
+
+createApp(App).use(i18n).use(Antd).use(router).mount('#app')
