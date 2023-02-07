@@ -1,7 +1,12 @@
 {
     "loginForm": {
         "form": {
-            "Title": "Inicia sesión"
+            "Title": "Inicia sesión",
+            "fields": {
+                "loginWithGoogle": {
+                    "Label": "Acceder con Google"
+                }
+            }
         }
     }
 }

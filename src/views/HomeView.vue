@@ -1,15 +1,22 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { ref } from "vue";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 
-const loginState = reactive({});
+const auth = getAuth();
 
-const isLoggedIn = false;
+let loginState = ref<{ user?: User | null }>({ user: null });
+console.log(loginState);
+
+onAuthStateChanged(auth, (user) => {
+  if (user) loginState.value = { user };
+  else loginState.value = {};
+});
 </script>
 
 <template>
   <div class="home">
-    <div v-if="isLoggedIn">{{ $t("test") }}</div>
-    <LoginComponent v-else />
+    <div v-if="loginState.user">{{ $t("test") }}</div>
+    <LoginComponent v-else-if="loginState.user !== null" />
   </div>
 </template>
 
