@@ -5,6 +5,9 @@
             "fields": {
                 "loginWithGoogle": {
                     "Label": "Acceder con Google"
+                },
+                "login": {
+                    "Label": "Iniciar sesión"
                 }
             }
         }
