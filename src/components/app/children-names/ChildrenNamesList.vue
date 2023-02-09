@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const studentsState = ref<StudentsModel>();
+const studentsState = ref<StudentModel[]>();
 
 StudentsService.onStudentsChange((data) => (studentsState.value = data));
 </script>
@@ -7,8 +7,8 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
 <template>
   <a-row :gutter="[12, 12]">
     <a-col
-      :v-if="studentsState?.names"
-      v-for="(name, i) in studentsState?.names"
+      :v-if="studentsState"
+      v-for="({ name }, i) of studentsState"
       :key="i"
       :span="24"
       ><p>{{ name }}</p></a-col
@@ -18,7 +18,7 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import { StudentsModel } from "../../../models/students/students.model";
+import { StudentModel } from "../../../models/students/student.model";
 import { StudentsService } from "../../../services/app/students/students.service";
 
 export default defineComponent({});
