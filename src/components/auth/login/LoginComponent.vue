@@ -1,15 +1,6 @@
 <script setup lang="ts">
-import {
-  GoogleOutlined,
-  LockOutlined,
-  UserOutlined,
-} from "@ant-design/icons-vue";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { GoogleOutlined } from "@ant-design/icons-vue";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const providers = {
   google: new GoogleAuthProvider(),
@@ -27,52 +18,10 @@ const loginWithGoogle = async () => {
   }
   loginLoading.value = false;
 };
-
-const loginFormState = ref<{ email: string; password: string }>();
-
-const loginWithEmailAndPassword = async () => {
-  loginLoading.value = true;
-  if (loginFormState.value) {
-    try {
-      const { email, password } = loginFormState.value;
-      const auth = getAuth();
-      await signInWithEmailAndPassword(auth, email, password);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  loginLoading.value = false;
-};
 </script>
 <template>
   <div class="login-page">
     <a-card :title="$t('loginForm.form.Title')" hoverable class="login-card">
-      <a-form :model="loginFormState" @finish="loginWithEmailAndPassword">
-        <a-row>
-          <a-col span="24">
-            <a-form-item>
-              <a-input type="email">
-                <template #prefix><UserOutlined /></template>
-              </a-input>
-            </a-form-item>
-          </a-col>
-          <a-col span="24">
-            <a-form-item>
-              <a-input type="password">
-                <template #prefix>
-                  <LockOutlined />
-                </template>
-              </a-input>
-            </a-form-item>
-          </a-col>
-          <a-col span="24">
-            <a-button block type="primary" html-type="submit">{{
-              $t("loginForm.form.fields.login.Label")
-            }}</a-button>
-          </a-col>
-        </a-row>
-      </a-form>
-      <a-divider />
       <a-button
         type="primary"
         block
