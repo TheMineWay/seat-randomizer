@@ -19,10 +19,7 @@ const hideNamesDrawer = () => (namesDrawerVisibility.value = false);
 </script>
 
 <template>
-  <ChildrenNamesDrawer
-    :visible="namesDrawerVisibility"
-    :onClose="hideNamesDrawer"
-  />
+  <StudentsDrawer :visible="namesDrawerVisibility" :onClose="hideNamesDrawer" />
   <a-layout class="layout">
     <a-layout-header>
       <div class="logo" />
@@ -52,9 +49,11 @@ const hideNamesDrawer = () => (namesDrawerVisibility.value = false);
 
 <script lang="ts">
 import { defineComponent, defineProps } from "vue";
-import ChildrenNamesDrawer from "../app/children-names/ChildrenNamesDrawer.vue";
+import StudentsDrawer from "../app/students/StudentsDrawer.vue";
 
-export default defineComponent({ components: { ChildrenNamesDrawer } });
+export default defineComponent({
+  components: { StudentsDrawer },
+});
 </script>
 <style>
 .layout {

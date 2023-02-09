@@ -10,9 +10,19 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
       :v-if="studentsState"
       v-for="({ name }, i) of studentsState"
       :key="i"
-      :span="24"
-      ><p>{{ name }}</p></a-col
+      span="24"
     >
+      <a-card hoverable>
+        <a-row :gutter="[12, 6]">
+          <a-col>
+            <a-avatar>{{ name.substring(0, 1) }}</a-avatar>
+          </a-col>
+          <a-col>
+            <p>{{ name }}</p>
+          </a-col>
+        </a-row>
+      </a-card>
+    </a-col>
   </a-row>
 </template>
 

@@ -13,13 +13,13 @@ const props = defineProps<Props>();
     @close="props.onClose"
     :title="$t('namesDrawer.Title')"
   >
-    <ChildrenNamesList />
+    <StudentsList />
   </a-drawer>
 </template>
 
 <script lang="ts">
 import { defineComponent, defineProps } from "vue";
-import ChildrenNamesList from "./ChildrenNamesList.vue";
+import StudentsList from "./StudentsList.vue";
 
-export default defineComponent({ components: { ChildrenNamesList } });
+export default defineComponent({ components: { StudentsList } });
 </script>
