@@ -1,10 +1,16 @@
 <script lang="ts" setup>
-const names = ref(["Paco"]);
+const studentsState = ref<StudentsModel>();
+
+StudentsService.onStudentsChange((data) => (studentsState.value = data));
 </script>
 
 <template>
   <a-row :gutter="[12, 12]">
-    <a-col v-for="(name, i) in names" :key="i" :span="24"
+    <a-col
+      :v-if="studentsState?.names"
+      v-for="(name, i) in studentsState?.names"
+      :key="i"
+      :span="24"
       ><p>{{ name }}</p></a-col
     >
   </a-row>
@@ -12,6 +18,8 @@ const names = ref(["Paco"]);
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { StudentsModel } from "../../../models/students/students.model";
+import { StudentsService } from "../../../services/app/students/students.service";
 
 export default defineComponent({});
 </script>
