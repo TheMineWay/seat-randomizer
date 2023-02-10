@@ -25,7 +25,7 @@ const hideNamesDrawer = () => (namesDrawerVisibility.value = false);
       <div class="logo" />
       <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
         <a-menu-item key="1" @click="displayNamesDrawer">{{
-          $t("layout.bar.names.Text")
+          $t("layout.bar.students.Text")
         }}</a-menu-item>
         <a-menu-item key="2" @click="signOut">{{
           $t("layout.bar.signOut.Text")

@@ -17,12 +17,30 @@
             "signOut": {
                 "Text": "Cerrar sesión"
             },
-            "names": {
-                "Text": "Nombres"
+            "students": {
+                "Text": "Estudiantes"
             }
         }
     },
-    "namesDrawer": {
-        "Title": "Nombres"
+    "studentsDrawer": {
+        "Title": "Estudiantes",
+        "addForm": {
+            "fields": {
+                "submit": {
+                    "Label": "Añadir"
+                },
+                "name": {
+                    "Label": "Nombre"
+                }
+            },
+            "errors": {
+                "nameLength": {
+                    "Text": "El nombre debe tener como mínimo dos carácteres y como máximo 64."
+                }
+            }
+        }
+    },
+    "errors": {
+        "Title": "Error"
     }
 }
