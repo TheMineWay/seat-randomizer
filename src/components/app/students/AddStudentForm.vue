@@ -1,39 +1,42 @@
 <script lang="ts" setup>
 import { PlusOutlined } from "@ant-design/icons-vue";
+import { addDoc, collection, getFirestore } from "@firebase/firestore";
 import { ref } from "@vue/runtime-dom";
-import { StudentModel } from "../../../models/students/student.model";
 
-const newStudentFormState = ref<StudentModel>();
+const newStudentNameState = ref<string>();
 const errorCode = ref<string>();
 
-const onSubmit = (values: StudentModel) => {
-  console.log(values);
+const onSubmit = async () => {
   errorCode.value = undefined;
-  if (!newStudentFormState.value) return;
-  const { name } = newStudentFormState.value;
+  const name = newStudentNameState.value;
+  if (!name) return;
+
   if (name.length < 2 || name.length > 64) {
     errorCode.value = "nameLength";
     return;
   }
 
-  newStudentFormState.value = undefined;
+  try {
+    await addDoc(collection(getFirestore(), "students"), {
+      name,
+    });
+  } catch (e) {
+    console.error(e);
+  }
+
+  newStudentNameState.value = undefined;
 };
 </script>
 
 <template>
-  <a-form
-    :model="newStudentFormState"
-    @finish="onSubmit"
-    autocomplete="off"
-    layout="vertical"
-  >
+  <a-form @submit="onSubmit" autocomplete="off" layout="vertical">
     <a-row :gutter="[6, 6]">
       <a-col span="24">
         <a-form-item
           name="name"
           :label="$t('studentsDrawer.addForm.fields.name.Label')"
         >
-          <a-input showCount allowClear />
+          <a-input showCount allowClear v-model:value="newStudentNameState" />
         </a-form-item>
       </a-col>
       <a-col span="24">
