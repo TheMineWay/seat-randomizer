@@ -38,6 +38,11 @@
                     "Text": "El nombre debe tener como mínimo dos carácteres y como máximo 64."
                 }
             }
+        },
+        "deleteModal": {
+            "Text": "Se va a eliminar el perfil de {name}.",
+            "Title": "Eliminar estudiante",
+            "Delete": "Eliminar perfil"
         }
     },
     "errors": {

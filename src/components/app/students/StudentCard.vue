@@ -11,6 +11,9 @@ type Props = {
 };
 const props = defineProps<Props>();
 
+const deleteModalVisibilityState = ref<boolean>(false);
+const isDeletingState = ref<boolean>(false);
+
 const name = ref<string>(props.student.data.name);
 
 const onSave = async () => {
@@ -20,11 +23,43 @@ const onSave = async () => {
 };
 
 const onDelete = async () => {
-  await deleteDoc(doc(getFirestore(), "students", props.student.id));
+  try {
+    isDeletingState.value = true;
+    await deleteDoc(doc(getFirestore(), "students", props.student.id));
+    deleteModalVisibilityState.value = false;
+    isDeletingState.value = false;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const onDeleteBtn = () => {
+  deleteModalVisibilityState.value = true;
 };
 </script>
 
 <template>
+  <a-modal
+    :footer="null"
+    v-model:visible="deleteModalVisibilityState"
+    closable
+    :title="$t('studentsDrawer.deleteModal.Title')"
+  >
+    <a-row :gutter="[6, 6]">
+      <a-col span="24">
+        <p>{{ $t("studentsDrawer.deleteModal.Text", { name }) }}</p>
+      </a-col>
+      <a-col span="24">
+        <a-button
+          block
+          type="danger"
+          :loading="isDeletingState"
+          @click="onDelete"
+          >{{ $t("studentsDrawer.deleteModal.Delete") }}</a-button
+        >
+      </a-col>
+    </a-row>
+  </a-modal>
   <a-card hoverable>
     <a-row :gutter="[12, 6]">
       <a-col span="4">
@@ -46,7 +81,7 @@ const onDelete = async () => {
         </a-button>
       </a-col>
       <a-col span="4">
-        <a-button type="danger" block @click="onDelete">
+        <a-button type="danger" block @click="onDeleteBtn">
           <template #icon>
             <DeleteOutlined />
           </template>
