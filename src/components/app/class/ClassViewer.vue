@@ -118,7 +118,7 @@ th {
 .container {
   width: 100%;
   overflow: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
 }
 table {
