@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-const studentsState = ref<StudentModel[]>();
+const studentsState = ref<FirebaseDocModel<StudentModel>[]>();
+console.log(studentsState);
 
 StudentsService.onStudentsChange((data) => (studentsState.value = data));
 </script>
@@ -8,14 +9,19 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
   <a-row :gutter="[12, 12]">
     <a-col
       :v-if="studentsState"
-      v-for="({ name }, i) of studentsState"
-      :key="i"
+      v-for="{ data: { name }, id } of studentsState"
+      :key="id"
       span="24"
     >
       <a-card hoverable>
         <a-row :gutter="[12, 6]">
           <a-col>
-            <a-avatar>{{ name.substring(0, 1) }}</a-avatar>
+            <a-avatar
+              :style="{
+                'background-color': ColorHelper.generateColorFromString(id),
+              }"
+              >{{ name.substring(0, 1) }}</a-avatar
+            >
           </a-col>
           <a-col>
             <p>{{ name }}</p>
@@ -29,7 +35,9 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { StudentModel } from "../../../models/students/student.model";
+import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
 import { StudentsService } from "../../../services/app/students/students.service";
+import { ColorHelper } from "../../../services/helpers/color.helper";
 
 export default defineComponent({});
 </script>
