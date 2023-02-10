@@ -17,6 +17,7 @@ const isDeletingState = ref<boolean>(false);
 const name = ref<string>(props.student.data.name);
 
 const onSave = async () => {
+  if (name.value?.length < 2) return;
   await updateDoc(doc(getFirestore(), "students", props.student.id), {
     name: name.value,
   });
