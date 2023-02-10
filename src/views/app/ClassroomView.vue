@@ -1,8 +1,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
-export default defineComponent({});
+import ClassViewer from "../../components/app/class/ClassViewer.vue";
+export default defineComponent({ components: { ClassViewer } });
 </script>
 
 <template>
-  <h1>Classroom</h1>
+  <ClassViewer />
 </template>
