@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { connectAuthEmulator, getAuth } from "firebase/auth";
 import { env } from "../env/env";
+import { getFirestore } from "./firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,7 +26,10 @@ export function initFirebase() {
 
     // Setup AUTH
     const auth = getAuth();
-    if(env().ENV === 'development') connectAuthEmulator(auth, "http://localhost:9099");
+    if(env().ENV === 'development') {
+      connectAuthEmulator(auth, "http://localhost:9099");
+    }
+    getFirestore();
 
     return {
         app,

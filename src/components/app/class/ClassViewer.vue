@@ -1,5 +1,15 @@
 <script lang="ts" setup>
+import { defineProps } from "vue";
+import { StudentModel } from "../../../models/students/student.model";
+import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
+import StudentEntity from "./StudentEntity.vue";
+
 // 40 seats
+type Props = {
+  students: FirebaseDocModel<StudentModel>[];
+};
+const props = defineProps<Props>();
+console.log(props.students.map((p) => p));
 </script>
 
 <template>
@@ -11,42 +21,74 @@
           <a-col span="24">
             <table border="1">
               <tr>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="0" />
+                </td>
                 <th rowspan="6"></th>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="1" />
+                </td>
               </tr>
               <tr>
-                <td>#</td>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="2" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="3" />
+                </td>
               </tr>
               <tr>
-                <td>#</td>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="4" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="5" />
+                </td>
               </tr>
               <tr>
-                <td>#</td>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="6" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="7" />
+                </td>
               </tr>
               <tr>
-                <td>#</td>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="8" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="9" />
+                </td>
               </tr>
               <tr>
-                <td>#</td>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="10" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="11" />
+                </td>
               </tr>
             </table>
           </a-col>
           <a-col>
             <table border="1">
               <tr>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="12" />
+                </td>
                 <th rowspan="2"></th>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="13" />
+                </td>
               </tr>
               <tr>
-                <td>#</td>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="14" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="15" />
+                </td>
               </tr>
             </table>
           </a-col>
@@ -58,46 +100,94 @@
           <a-col span="24">
             <table border="1">
               <tr>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="16" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="17" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="18" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="19" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="20" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="21" />
+                </td>
               </tr>
               <tr>
                 <th colspan="6"></th>
               </tr>
               <tr>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="22" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="23" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="24" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="25" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="26" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="27" />
+                </td>
               </tr>
             </table>
           </a-col>
           <a-col span="24">
             <table border="1">
               <tr>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="28" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="29" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="30" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="31" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="32" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="33" />
+                </td>
               </tr>
               <tr>
                 <th colspan="6"></th>
               </tr>
               <tr>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
-                <td>#</td>
+                <td>
+                  <StudentEntity :students="props.students" :number="34" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="35" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="36" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="37" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="38" />
+                </td>
+                <td>
+                  <StudentEntity :students="props.students" :number="39" />
+                </td>
               </tr>
             </table>
           </a-col>

@@ -1,7 +1,6 @@
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, getFirestore, onSnapshot } from "firebase/firestore";
 import { StudentModel } from "../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
-import { getFirestore } from "../../firebase/firestore";
 
 export class StudentsService {
     static onStudentsChange = (onChange: (data: FirebaseDocModel<StudentModel>[]) => void) => {
