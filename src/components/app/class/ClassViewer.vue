@@ -9,7 +9,7 @@ type Props = {
   students: FirebaseDocModel<StudentModel>[];
 };
 const props = defineProps<Props>();
-console.log(props.students.map((p) => p));
+console.log({ students: props.students });
 </script>
 
 <template>

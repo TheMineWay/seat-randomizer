@@ -1,17 +1,19 @@
 <script lang="ts" setup>
-const students = ref<FirebaseDocModel<StudentModel>[]>([]);
+const students = ref<{ students: FirebaseDocModel<StudentModel>[] | null }>({
+  students: null,
+});
 console.log({ students });
 
-StudentsService.onStudentsChange((data) => {
-  console.log(data);
-  console.log("State should change");
-  students.value = data;
-  console.log("State should be changed");
-});
+StudentsService.onStudentsChange(
+  (data) => (students.value = { students: data })
+);
 </script>
 
 <template>
-  <ClassViewer :students="students" />
+  <ClassViewer
+    v-if="students.students !== null"
+    :students="students.students"
+  />
 </template>
 
 <script lang="ts">
