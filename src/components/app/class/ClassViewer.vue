@@ -1,19 +1,24 @@
 <script lang="ts" setup>
-import { defineProps } from "vue";
+import { ref } from "vue";
 import { StudentModel } from "../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
+import { StudentsService } from "../../../services/app/students/students.service";
 import StudentEntity from "./StudentEntity.vue";
 
 // 40 seats
-type Props = {
-  students: FirebaseDocModel<StudentModel>[];
-};
-const props = defineProps<Props>();
-console.log({ students: props.students });
+
+const students = ref<{ students: FirebaseDocModel<StudentModel>[] | null }>({
+  students: null,
+});
+console.log({ students });
+
+StudentsService.onStudentsChange(
+  (data) => (students.value = { students: data })
+);
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" v-if="students.students !== null">
     <a-row :gutter="[24, 24]">
       <!-- Left tables -->
       <a-col lg="8" xs="24">
@@ -22,51 +27,51 @@ console.log({ students: props.students });
             <table border="1">
               <tr>
                 <td>
-                  <StudentEntity :students="props.students" :number="0" />
+                  <StudentEntity :students="students.students" :number="0" />
                 </td>
                 <th rowspan="6"></th>
                 <td>
-                  <StudentEntity :students="props.students" :number="1" />
+                  <StudentEntity :students="students.students" :number="1" />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="props.students" :number="2" />
+                  <StudentEntity :students="students.students" :number="2" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="3" />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <StudentEntity :students="props.students" :number="4" />
-                </td>
-                <td>
-                  <StudentEntity :students="props.students" :number="5" />
+                  <StudentEntity :students="students.students" :number="3" />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="props.students" :number="6" />
+                  <StudentEntity :students="students.students" :number="4" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="7" />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <StudentEntity :students="props.students" :number="8" />
-                </td>
-                <td>
-                  <StudentEntity :students="props.students" :number="9" />
+                  <StudentEntity :students="students.students" :number="5" />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="props.students" :number="10" />
+                  <StudentEntity :students="students.students" :number="6" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="11" />
+                  <StudentEntity :students="students.students" :number="7" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <StudentEntity :students="students.students" :number="8" />
+                </td>
+                <td>
+                  <StudentEntity :students="students.students" :number="9" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <StudentEntity :students="students.students" :number="10" />
+                </td>
+                <td>
+                  <StudentEntity :students="students.students" :number="11" />
                 </td>
               </tr>
             </table>
@@ -75,19 +80,19 @@ console.log({ students: props.students });
             <table border="1">
               <tr>
                 <td>
-                  <StudentEntity :students="props.students" :number="12" />
+                  <StudentEntity :students="students.students" :number="12" />
                 </td>
                 <th rowspan="2"></th>
                 <td>
-                  <StudentEntity :students="props.students" :number="13" />
+                  <StudentEntity :students="students.students" :number="13" />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="props.students" :number="14" />
+                  <StudentEntity :students="students.students" :number="14" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="15" />
+                  <StudentEntity :students="students.students" :number="15" />
                 </td>
               </tr>
             </table>
@@ -101,22 +106,22 @@ console.log({ students: props.students });
             <table border="1">
               <tr>
                 <td>
-                  <StudentEntity :students="props.students" :number="16" />
+                  <StudentEntity :students="students.students" :number="16" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="17" />
+                  <StudentEntity :students="students.students" :number="17" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="18" />
+                  <StudentEntity :students="students.students" :number="18" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="19" />
+                  <StudentEntity :students="students.students" :number="19" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="20" />
+                  <StudentEntity :students="students.students" :number="20" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="21" />
+                  <StudentEntity :students="students.students" :number="21" />
                 </td>
               </tr>
               <tr>
@@ -124,22 +129,22 @@ console.log({ students: props.students });
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="props.students" :number="22" />
+                  <StudentEntity :students="students.students" :number="22" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="23" />
+                  <StudentEntity :students="students.students" :number="23" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="24" />
+                  <StudentEntity :students="students.students" :number="24" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="25" />
+                  <StudentEntity :students="students.students" :number="25" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="26" />
+                  <StudentEntity :students="students.students" :number="26" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="27" />
+                  <StudentEntity :students="students.students" :number="27" />
                 </td>
               </tr>
             </table>
@@ -148,22 +153,22 @@ console.log({ students: props.students });
             <table border="1">
               <tr>
                 <td>
-                  <StudentEntity :students="props.students" :number="28" />
+                  <StudentEntity :students="students.students" :number="28" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="29" />
+                  <StudentEntity :students="students.students" :number="29" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="30" />
+                  <StudentEntity :students="students.students" :number="30" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="31" />
+                  <StudentEntity :students="students.students" :number="31" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="32" />
+                  <StudentEntity :students="students.students" :number="32" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="33" />
+                  <StudentEntity :students="students.students" :number="33" />
                 </td>
               </tr>
               <tr>
@@ -171,22 +176,22 @@ console.log({ students: props.students });
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="props.students" :number="34" />
+                  <StudentEntity :students="students.students" :number="34" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="35" />
+                  <StudentEntity :students="students.students" :number="35" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="36" />
+                  <StudentEntity :students="students.students" :number="36" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="37" />
+                  <StudentEntity :students="students.students" :number="37" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="38" />
+                  <StudentEntity :students="students.students" :number="38" />
                 </td>
                 <td>
-                  <StudentEntity :students="props.students" :number="39" />
+                  <StudentEntity :students="students.students" :number="39" />
                 </td>
               </tr>
             </table>
@@ -195,6 +200,7 @@ console.log({ students: props.students });
       </a-col>
     </a-row>
   </div>
+  <div v-else>...</div>
 </template>
 
 <style>

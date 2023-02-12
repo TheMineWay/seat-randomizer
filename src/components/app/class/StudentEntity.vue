@@ -20,9 +20,11 @@ const student =
     <a-row :gutter="[12, 12]">
       <a-col>
         <a-avatar
-          .style="{'background-color':
-          ColorHelper.generateColorFromString(student.id)}"
-        />
+          :style="{
+            'background-color': ColorHelper.generateColorFromString(student.id),
+          }"
+          >{{ student.data.name.substring(0, 1) }}</a-avatar
+        >
       </a-col>
       <a-col>
         {{ student.data.name }}
