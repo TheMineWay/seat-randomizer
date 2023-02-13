@@ -9,7 +9,7 @@ import { ColorHelper } from "../../../services/helpers/color.helper";
 type Props = {
   students: FirebaseDocModel<StudentModel>[];
   assignedStudents: AssignedStudentModel[];
-  onAssign: (student: FirebaseDocModel<StudentModel>) => void;
+  onAssign: (student: FirebaseDocModel<StudentModel>) => Promise<void>;
 };
 
 const props = defineProps<Props>();
@@ -18,6 +18,11 @@ const drawerVisibilityState = ref<boolean>(false);
 
 const onAddBtnClick = () => (drawerVisibilityState.value = true);
 const onCloseDrawerClick = () => (drawerVisibilityState.value = false);
+
+const assign = async (student: FirebaseDocModel<StudentModel>) => {
+  await props.onAssign(student);
+  onCloseDrawerClick();
+};
 </script>
 
 <style lang="scss" scoped>
@@ -47,7 +52,7 @@ div.center {
       :key="student.id"
     >
       <a-col span="24">
-        <a-card hoverable @click="() => props.onAssign(student)">
+        <a-card hoverable @click="() => assign(student)">
           <a-space>
             <a-avatar
               :style="{

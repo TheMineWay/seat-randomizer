@@ -1,13 +1,19 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+import { AssignedStudentModel } from "../../../models/students/assigned-student.model";
 import { StudentModel } from "../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
+import { StudentSitesService } from "../../../services/app/sites/student-sites.service";
 import { StudentsService } from "../../../services/app/students/students.service";
 import StudentEntity from "./StudentEntity.vue";
 
-const studentsState = ref<FirebaseDocModel<StudentModel>[]>();
+const studentsState = ref<FirebaseDocModel<StudentModel>[]>([]);
+const studentSitesState = ref<FirebaseDocModel<AssignedStudentModel>[]>([]);
 
 StudentsService.onStudentsChange((data) => (studentsState.value = data));
+StudentSitesService.onStudentsSitesChange(
+  (data) => (studentSitesState.value = data)
+);
 </script>
 
 <template>
@@ -20,51 +26,99 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
             <table border="1">
               <tr>
                 <td>
-                  <StudentEntity :students="studentsState" :number="0" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="0"
+                  />
                 </td>
                 <th rowspan="6"></th>
                 <td>
-                  <StudentEntity :students="studentsState" :number="1" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="1"
+                  />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="studentsState" :number="2" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="2"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="3" />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <StudentEntity :students="studentsState" :number="4" />
-                </td>
-                <td>
-                  <StudentEntity :students="studentsState" :number="5" />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <StudentEntity :students="studentsState" :number="6" />
-                </td>
-                <td>
-                  <StudentEntity :students="studentsState" :number="7" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="3"
+                  />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="studentsState" :number="8" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="4"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="9" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="5"
+                  />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="studentsState" :number="10" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="6"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="11" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="7"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="8"
+                  />
+                </td>
+                <td>
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="9"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="10"
+                  />
+                </td>
+                <td>
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="11"
+                  />
                 </td>
               </tr>
             </table>
@@ -73,19 +127,35 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
             <table border="1">
               <tr>
                 <td>
-                  <StudentEntity :students="studentsState" :number="12" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="12"
+                  />
                 </td>
                 <th rowspan="2"></th>
                 <td>
-                  <StudentEntity :students="studentsState" :number="13" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="13"
+                  />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="studentsState" :number="14" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="14"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="15" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="15"
+                  />
                 </td>
               </tr>
             </table>
@@ -99,22 +169,46 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
             <table border="1">
               <tr>
                 <td>
-                  <StudentEntity :students="studentsState" :number="16" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="16"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="17" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="17"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="18" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="18"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="19" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="19"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="20" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="20"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="21" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="21"
+                  />
                 </td>
               </tr>
               <tr>
@@ -122,22 +216,46 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="studentsState" :number="22" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="22"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="23" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="23"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="24" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="24"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="25" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="25"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="26" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="26"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="27" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="27"
+                  />
                 </td>
               </tr>
             </table>
@@ -146,22 +264,46 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
             <table border="1">
               <tr>
                 <td>
-                  <StudentEntity :students="studentsState" :number="28" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="28"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="29" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="29"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="30" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="30"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="31" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="31"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="32" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="32"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="33" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="33"
+                  />
                 </td>
               </tr>
               <tr>
@@ -169,22 +311,46 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
               </tr>
               <tr>
                 <td>
-                  <StudentEntity :students="studentsState" :number="34" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="34"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="35" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="35"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="36" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="36"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="37" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="37"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="38" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="38"
+                  />
                 </td>
                 <td>
-                  <StudentEntity :students="studentsState" :number="39" />
+                  <StudentEntity
+                    :assigned-students="studentSitesState"
+                    :students="studentsState"
+                    :number="39"
+                  />
                 </td>
               </tr>
             </table>
