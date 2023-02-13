@@ -15,11 +15,19 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
 StudentSitesService.onStudentsSitesChange(
   (data) => (studentSitesState.value = data)
 );
+
+const onRandomize = async () => {
+  await StudentSitesService.assignRandomly(
+    studentsState.value,
+    studentSitesState.value,
+    40
+  );
+};
 </script>
 
 <template>
-  <a-row :gutter="[24, 24]">
-    <a-col span="24">
+  <a-row :gutter="[24, 24]" justify="space-between">
+    <a-col xs="24">
       <a-row :gutter="[12, 12]">
         <a-col>
           <a-switch v-model:checked="enableDeleteState" />
@@ -28,6 +36,11 @@ StudentSitesService.onStudentsSitesChange(
           <p>{{ $t("classViewer.enableDelete.Text") }}</p>
         </a-col>
       </a-row>
+    </a-col>
+    <a-col xs="24">
+      <a-button type="primary" @click="onRandomize">{{
+        $t("classViewer.randomize.Text")
+      }}</a-button>
     </a-col>
     <a-col span="24">
       <div class="container">

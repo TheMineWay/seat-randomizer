@@ -54,6 +54,9 @@
         },
         "enableDelete": {
             "Text": "Habilitar borrado"
+        },
+        "randomize": {
+            "Text": "Asignar aleatoriamente"
         }
     }
 }
