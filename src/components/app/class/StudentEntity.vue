@@ -10,25 +10,31 @@ type Props = {
 };
 
 const props = defineProps<Props>();
-
-const student =
-  props.students &&
-  (props.students.length > props.number ? props.students[props.number] : null);
 </script>
 
 <template>
-  <div v-if="student">
+  <div
+    v-if="
+      props.students &&
+      (props.number || props.number === 0) &&
+      props.students.length > props.number
+    "
+  >
     <a-row :gutter="[12, 12]">
       <a-col>
         <a-avatar
           :style="{
-            'background-color': ColorHelper.generateColorFromString(student.id),
+            'background-color': ColorHelper.generateColorFromString(
+              props.students[props.number].id
+            ),
           }"
-          >{{ student.data.name.substring(0, 1) }}</a-avatar
+          >{{
+            props.students[props.number].data.name.substring(0, 1)
+          }}</a-avatar
         >
       </a-col>
       <a-col>
-        {{ student.data.name }}
+        {{ props.students[props.number].data.name }}
       </a-col>
     </a-row>
   </div>
