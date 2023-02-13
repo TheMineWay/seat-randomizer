@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GoogleOutlined } from "@ant-design/icons-vue";
+import { GithubOutlined, GoogleOutlined } from "@ant-design/icons-vue";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const providers = {
@@ -18,22 +18,42 @@ const loginWithGoogle = async () => {
   }
   loginLoading.value = false;
 };
+
+const openGithub = () => {
+  window.open("https://github.com/TheMineWay/seat-randomizer", "_blank");
+};
 </script>
 <template>
   <div class="login-page">
-    <a-card :title="$t('loginForm.form.Title')" hoverable class="login-card">
-      <a-button
-        type="primary"
-        block
-        @click="loginWithGoogle"
-        :loading="loginLoading"
-      >
-        <template #icon>
-          <GoogleOutlined />
-        </template>
-        {{ $t("loginForm.form.fields.loginWithGoogle.Label") }}</a-button
-      >
-    </a-card>
+    <a-row :gutter="[12, 12]" justify="center">
+      <a-col span="24">
+        <a-card
+          :title="$t('loginForm.form.Title')"
+          hoverable
+          class="login-card"
+        >
+          <a-button
+            type="primary"
+            block
+            @click="loginWithGoogle"
+            :loading="loginLoading"
+          >
+            <template #icon>
+              <GoogleOutlined />
+            </template>
+            {{ $t("loginForm.form.fields.loginWithGoogle.Label") }}</a-button
+          >
+        </a-card>
+      </a-col>
+      <a-col span="24">
+        <a-button type="ghost" block @click="openGithub">
+          <template #icon>
+            <GithubOutlined />
+          </template>
+          {{ $t("layout.bar.github.Text") }}
+        </a-button>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
@@ -46,8 +66,7 @@ div.login-page {
   justify-content: center;
 }
 .login-card {
-  width: 40em;
-  max-width: 95%;
+  width: 100%;
 }
 </style>
 
