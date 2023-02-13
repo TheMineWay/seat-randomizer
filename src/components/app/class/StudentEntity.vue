@@ -12,6 +12,7 @@ type Props = {
   students: FirebaseDocModel<StudentModel>[];
   assignedStudents: FirebaseDocModel<AssignedStudentModel>[];
   number: number;
+  enableDelete: boolean;
 };
 
 const props = defineProps<Props>();
@@ -68,6 +69,7 @@ const onDelete = async () => {
           type="primary"
           @click="onDelete"
           :loading="deleteLoading"
+          :disabled="!props.enableDelete"
           ><template #icon><DeleteOutlined /></template
         ></a-button>
       </a-col>

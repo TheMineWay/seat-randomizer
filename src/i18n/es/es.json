@@ -51,6 +51,9 @@
     "classViewer": {
         "assignSiteDrawer": {
             "Title": "Asignar sitio a"
+        },
+        "enableDelete": {
+            "Text": "Habilitar borrado"
         }
     }
 }
