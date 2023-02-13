@@ -53,7 +53,7 @@ StudentSitesService.onStudentsSitesChange(
                         :number="0"
                       />
                     </td>
-                    <th rowspan="6"></th>
+                    <th rowspan="6"><p>#1</p></th>
                     <td>
                       <StudentEntity
                         :assigned-students="studentSitesState"
@@ -166,7 +166,7 @@ StudentSitesService.onStudentsSitesChange(
                         :number="12"
                       />
                     </td>
-                    <th rowspan="2"></th>
+                    <th rowspan="2"><p>#2</p></th>
                     <td>
                       <StudentEntity
                         :assigned-students="studentSitesState"
@@ -254,7 +254,7 @@ StudentSitesService.onStudentsSitesChange(
                     </td>
                   </tr>
                   <tr>
-                    <th colspan="6"></th>
+                    <th colspan="6"><p>#3</p></th>
                   </tr>
                   <tr>
                     <td>
@@ -361,7 +361,7 @@ StudentSitesService.onStudentsSitesChange(
                     </td>
                   </tr>
                   <tr>
-                    <th colspan="6"></th>
+                    <th colspan="6"><p>#4</p></th>
                   </tr>
                   <tr>
                     <td>
@@ -422,7 +422,7 @@ StudentSitesService.onStudentsSitesChange(
   </a-row>
 </template>
 
-<style>
+<style lang="scss" scoped>
 td {
   padding: 1.5em;
   width: 5em;
@@ -430,6 +430,9 @@ td {
 th {
   background-color: orange;
   padding: 5em;
+  p {
+    font-size: 1.5em;
+  }
 }
 .container {
   width: 100%;
