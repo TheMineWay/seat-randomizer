@@ -14,7 +14,7 @@ const loginWithGoogle = async () => {
     const auth = getAuth();
     await signInWithPopup(auth, providers.google);
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
   loginLoading.value = false;
 };

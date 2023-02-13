@@ -6,13 +6,10 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
 
 <template>
   <a-row :gutter="[12, 12]">
-    <a-col
-      :v-if="studentsState"
-      v-for="student of studentsState"
-      :key="student.id"
-      span="24"
-    >
-      <StudentCard :student="student" />
+    <a-col v-if="studentsState">
+      <div v-for="student of studentsState" :key="student.id" span="24">
+        <StudentCard :student="student" />
+      </div>
     </a-col>
   </a-row>
 </template>

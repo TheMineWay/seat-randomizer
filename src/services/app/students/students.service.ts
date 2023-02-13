@@ -6,7 +6,6 @@ export class StudentsService {
     static onStudentsChange = (onChange: (data: FirebaseDocModel<StudentModel>[]) => void) => {
         onSnapshot(collection(getFirestore(), 'students'), (collection) => {
             const d = collection.docs.map((d) => ({ id: d.id, data: d.data() as StudentModel }));
-            console.log({d});
             onChange(d);
         });
     }

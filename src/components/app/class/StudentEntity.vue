@@ -5,14 +5,15 @@ import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.mo
 import { ColorHelper } from "../../../services/helpers/color.helper";
 
 type Props = {
-  students: FirebaseDocModel<StudentModel>[];
+  students?: FirebaseDocModel<StudentModel>[];
   number: number;
 };
 
 const props = defineProps<Props>();
 
 const student =
-  props.students.length > props.number ? props.students[props.number] : null;
+  props.students &&
+  (props.students.length > props.number ? props.students[props.number] : null);
 </script>
 
 <template>
