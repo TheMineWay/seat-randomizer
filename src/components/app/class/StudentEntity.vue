@@ -44,42 +44,50 @@ const onDelete = async () => {
 </script>
 
 <template>
-  <div v-if="student">
-    <a-row :gutter="[12, 12]" justify="space-between">
-      <a-col>
-        <a-row :gutter="[12, 12]">
-          <a-col>
-            <a-avatar
-              :style="{
-                'background-color': ColorHelper.generateColorFromString(
-                  student.id
-                ),
-              }"
-              >{{ student.data.name.substring(0, 1) }}</a-avatar
-            >
-          </a-col>
-          <a-col>
-            {{ student?.data.name }}
-          </a-col>
-        </a-row>
-      </a-col>
-      <a-col>
-        <a-button
-          danger
-          type="primary"
-          @click="onDelete"
-          :loading="deleteLoading"
-          :disabled="!props.enableDelete"
-          ><template #icon><DeleteOutlined /></template
-        ></a-button>
-      </a-col>
-    </a-row>
-  </div>
-  <div v-else>
-    <AssignSeatButton
-      :students="props.students ?? []"
-      :assigned-students="props.assignedStudents.map((d) => d.data)"
-      :on-assign="onAssignSite"
-    />
+  <div class="student-entity">
+    <div v-if="student">
+      <a-row :gutter="[12, 12]" justify="center">
+        <a-col span="24" class="x-center">
+          <a-avatar
+            :style="{
+              'background-color': ColorHelper.generateColorFromString(
+                student.id
+              ),
+            }"
+            >{{ student.data.name.substring(0, 1) }}</a-avatar
+          >
+        </a-col>
+        <a-col span="24" class="x-center">
+          {{ student?.data.name }}
+        </a-col>
+        <a-col span="24" class="x-center">
+          <a-button
+            danger
+            type="primary"
+            @click="onDelete"
+            :loading="deleteLoading"
+            :disabled="!props.enableDelete"
+            ><template #icon><DeleteOutlined /></template
+          ></a-button>
+        </a-col>
+      </a-row>
+    </div>
+    <div v-else>
+      <AssignSeatButton
+        :students="props.students ?? []"
+        :assigned-students="props.assignedStudents.map((d) => d.data)"
+        :on-assign="onAssignSite"
+      />
+    </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+div.student-entity {
+  width: 100%;
+}
+div.x-center {
+  display: flex;
+  justify-content: center;
+}
+</style>

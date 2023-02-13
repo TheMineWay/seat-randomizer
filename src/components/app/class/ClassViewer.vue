@@ -424,7 +424,8 @@ StudentSitesService.onStudentsSitesChange(
 
 <style>
 td {
-  padding: 2.5em;
+  padding: 1.5em;
+  width: 5em;
 }
 th {
   background-color: orange;
