@@ -56,7 +56,11 @@
             "Text": "Habilitar borrado"
         },
         "randomize": {
-            "Text": "Asignar aleatoriamente"
+            "Text": "Asignar aleatoriamente",
+            "confirmModal": {
+                "Title": "Asignar sitios aleatoriamente",
+                "Message": "¿Seguro que quieres asignar los sitios aleatoriamente? Perderás la distribución actual."
+            }
         }
     }
 }

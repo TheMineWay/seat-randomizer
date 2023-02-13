@@ -6,6 +6,7 @@ import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.mo
 import { StudentSitesService } from "../../../services/app/sites/student-sites.service";
 import { StudentsService } from "../../../services/app/students/students.service";
 import StudentEntity from "./StudentEntity.vue";
+import RandomizeButton from "./RandomizeButton.vue";
 
 const studentsState = ref<FirebaseDocModel<StudentModel>[]>([]);
 const studentSitesState = ref<FirebaseDocModel<AssignedStudentModel>[]>([]);
@@ -15,14 +16,6 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
 StudentSitesService.onStudentsSitesChange(
   (data) => (studentSitesState.value = data)
 );
-
-const onRandomize = async () => {
-  await StudentSitesService.assignRandomly(
-    studentsState.value,
-    studentSitesState.value,
-    40
-  );
-};
 </script>
 
 <template>
@@ -38,9 +31,10 @@ const onRandomize = async () => {
       </a-row>
     </a-col>
     <a-col xs="24">
-      <a-button type="primary" @click="onRandomize">{{
-        $t("classViewer.randomize.Text")
-      }}</a-button>
+      <RandomizeButton
+        :students="studentsState"
+        :studentSites="studentSitesState"
+      />
     </a-col>
     <a-col span="24">
       <div class="container">
