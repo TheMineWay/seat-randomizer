@@ -47,5 +47,10 @@
     },
     "errors": {
         "Title": "Error"
+    },
+    "classViewer": {
+        "assignSiteDrawer": {
+            "Title": "Asignar sitio a"
+        }
     }
 }

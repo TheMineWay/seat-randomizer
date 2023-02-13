@@ -3,6 +3,7 @@ import { defineProps } from "vue";
 import { StudentModel } from "../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
 import { ColorHelper } from "../../../services/helpers/color.helper";
+import AssignSeatButton from "./AssignSeatButton.vue";
 
 type Props = {
   students?: FirebaseDocModel<StudentModel>[];
@@ -10,6 +11,10 @@ type Props = {
 };
 
 const props = defineProps<Props>();
+
+const onAssignSite = (student: FirebaseDocModel<StudentModel>) => {
+  console.log(student);
+};
 </script>
 
 <template>
@@ -39,6 +44,10 @@ const props = defineProps<Props>();
     </a-row>
   </div>
   <div v-else>
-    <p>a</p>
+    <AssignSeatButton
+      :students="props.students ?? []"
+      :assigned-students="[]"
+      :on-assign="onAssignSite"
+    />
   </div>
 </template>
