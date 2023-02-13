@@ -1,10 +1,10 @@
-import { collection, doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
 import { AssignedStudentModel } from "../../../models/students/assigned-student.model";
 import { StudentModel } from "../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
 
 export class StudentSitesService {
-    static async updateStudentSite(student: FirebaseDocModel<StudentModel>, siteId: number) {
+    static updateStudentSite = async (student: FirebaseDocModel<StudentModel>, siteId: number) => {
         await setDoc(doc(getFirestore(), "sites", siteId.toString()), {
             studentId: student.id, 
         });
@@ -18,5 +18,9 @@ export class StudentSitesService {
             }) }));
             onChange(d);
         });
+    }
+
+    static deleteSiteAssignment = async (siteId: number) => {
+        await deleteDoc(doc(getFirestore(), "sites", siteId.toString()));
     }
 }
