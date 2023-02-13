@@ -3,7 +3,6 @@ import { ref } from "vue";
 import { StudentModel } from "../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
 import { StudentsService } from "../../../services/app/students/students.service";
-import StudentCard from "../students/StudentCard.vue";
 import StudentEntity from "./StudentEntity.vue";
 
 const studentsState = ref<FirebaseDocModel<StudentModel>[]>();
@@ -12,13 +11,6 @@ StudentsService.onStudentsChange((data) => (studentsState.value = data));
 </script>
 
 <template>
-  <a-row :gutter="[12, 12]">
-    <a-col v-if="studentsState">
-      <div v-for="student of studentsState" :key="student.id" span="24">
-        <StudentCard :student="student" />
-      </div>
-    </a-col>
-  </a-row>
   <div class="container" v-if="studentsState">
     <a-row :gutter="[24, 24]">
       <!-- Left tables -->
