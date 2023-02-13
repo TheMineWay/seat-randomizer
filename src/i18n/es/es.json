@@ -19,6 +19,9 @@
             },
             "students": {
                 "Text": "Estudiantes"
+            },
+            "github": {
+                "Text": "Código fuente"
             }
         }
     },

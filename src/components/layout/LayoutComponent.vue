@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 import { getAuth, signOut as firebaseSignOut } from "firebase/auth";
 import { ref } from "vue";
+import {
+  GithubOutlined,
+  GroupOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons-vue";
 
 type Props = {
   children: Object;
@@ -10,6 +15,10 @@ const props = defineProps<Props>();
 
 const signOut = () => {
   firebaseSignOut(getAuth());
+};
+
+const openGithub = () => {
+  window.open("https://github.com/TheMineWay/seat-randomizer", "_blank");
 };
 
 const namesDrawerVisibility = ref(false);
@@ -24,12 +33,18 @@ const hideNamesDrawer = () => (namesDrawerVisibility.value = false);
     <a-layout-header>
       <div class="logo" />
       <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-        <a-menu-item key="1" @click="displayNamesDrawer">{{
-          $t("layout.bar.students.Text")
-        }}</a-menu-item>
-        <a-menu-item key="2" @click="signOut">{{
-          $t("layout.bar.signOut.Text")
-        }}</a-menu-item>
+        <a-menu-item key="1" @click="displayNamesDrawer">
+          <template #icon><GroupOutlined /></template
+          >{{ $t("layout.bar.students.Text") }}</a-menu-item
+        >
+        <a-menu-item key="2" @click="signOut">
+          <template #icon><LogoutOutlined /></template
+          >{{ $t("layout.bar.signOut.Text") }}</a-menu-item
+        >
+        <a-menu-item key="3" @click="openGithub">
+          <template #icon><GithubOutlined /></template>
+          {{ $t("layout.bar.github.Text") }}
+        </a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout-content style="padding: 0 50px">
