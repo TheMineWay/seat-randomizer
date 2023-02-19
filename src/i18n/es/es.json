@@ -76,6 +76,15 @@
                 "Title": "Asignar sitios aleatoriamente",
                 "Message": "¿Seguro que quieres asignar los sitios aleatoriamente? Perderás la distribución actual."
             }
+        },
+        "unassignAll": {
+            "Text": "Desasignar todos",
+            "confirmModal": {
+                "Title": "Desasignar todos los sitios",
+                "unassignBtn": {
+                    "Text": "Desasignar sitios"
+                }
+            }
         }
     }
 }

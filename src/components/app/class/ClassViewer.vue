@@ -7,10 +7,13 @@ import { StudentSitesService } from "../../../services/app/sites/student-sites.s
 import { StudentsService } from "../../../services/app/students/students.service";
 import StudentEntity from "./StudentEntity.vue";
 import RandomizeButton from "./RandomizeButton.vue";
+import { CloseOutlined } from "@ant-design/icons-vue";
+import UnassignAllModal from "./UnassignAllModal.vue";
 
 const studentsState = ref<FirebaseDocModel<StudentModel>[]>([]);
 const studentSitesState = ref<FirebaseDocModel<AssignedStudentModel>[]>([]);
 const enableDeleteState = ref<boolean>(false);
+const unassignAllModalState = ref<boolean>(false);
 
 StudentsService.onStudentsChange((data) => (studentsState.value = data));
 StudentSitesService.onStudentsSitesChange(
@@ -19,8 +22,12 @@ StudentSitesService.onStudentsSitesChange(
 </script>
 
 <template>
+  <UnassignAllModal
+    :visible="unassignAllModalState"
+    :onClose="() => (unassignAllModalState = false)"
+  />
   <a-row :gutter="[24, 24]" justify="space-between">
-    <a-col xs="24">
+    <a-col :xs="24" :md="12">
       <a-row :gutter="[12, 12]">
         <a-col>
           <a-switch v-model:checked="enableDeleteState" />
@@ -30,11 +37,21 @@ StudentSitesService.onStudentsSitesChange(
         </a-col>
       </a-row>
     </a-col>
-    <a-col xs="24">
-      <RandomizeButton
-        :students="studentsState"
-        :studentSites="studentSitesState"
-      />
+    <a-col :xs="24" :md="12">
+      <a-row :gutter="[12, 12]" justify="end">
+        <a-col>
+          <a-button danger @click="() => (unassignAllModalState = true)">
+            <template #icon><CloseOutlined /></template
+            >{{ $t("classViewer.unassignAll.Text") }}</a-button
+          >
+        </a-col>
+        <a-col>
+          <RandomizeButton
+            :students="studentsState"
+            :studentSites="studentSitesState"
+          />
+        </a-col>
+      </a-row>
     </a-col>
     <a-col span="24">
       <div class="container">

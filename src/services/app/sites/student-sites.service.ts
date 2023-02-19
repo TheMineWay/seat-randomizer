@@ -1,4 +1,4 @@
-import { collection, deleteDoc, doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
 import { AssignedStudentModel } from "../../../models/students/assigned-student.model";
 import { StudentModel } from "../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
@@ -22,6 +22,14 @@ export class StudentSitesService {
 
     static deleteSiteAssignment = async (siteId: number) => {
         await deleteDoc(doc(getFirestore(), "sites", siteId.toString()));
+    }
+
+    static deleteSitesAssignments = async () => {
+        const db = getFirestore();
+        const sites = await getDocs(collection(db, 'sites'));
+        for (const site of sites.docs) {
+            await deleteDoc(doc(db, 'sites', site.id));
+        }
     }
 
     static assignRandomly = async (students: FirebaseDocModel<StudentModel>[], assignedSeats: FirebaseDocModel<AssignedStudentModel>[], availableSeats: number) => {
