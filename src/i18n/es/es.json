@@ -48,6 +48,18 @@
             "Delete": "Eliminar perfil"
         }
     },
+    "studentsEditModal": {
+        "Title": "Editar estudiante",
+        "deleteBtn": {
+            "Text": "Eliminar estudiante"
+        },
+        "disableTilTomorrow": {
+            "Text": "Deshabilitar hasta mañana"
+        },
+        "enable": {
+            "Text": "Habilitar"
+        }
+    },
     "errors": {
         "Title": "Error"
     },

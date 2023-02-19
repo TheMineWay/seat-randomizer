@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import { DeleteOutlined, SaveOutlined } from "@ant-design/icons-vue";
-import { deleteDoc, doc, getFirestore, updateDoc } from "@firebase/firestore";
+import { EditOutlined, SaveOutlined } from "@ant-design/icons-vue";
+import { doc, getFirestore, updateDoc } from "@firebase/firestore";
 import { defineProps, ref } from "vue";
 import { StudentModel } from "../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
 import { ColorHelper } from "../../../services/helpers/color.helper";
+import StudentEditModal from "./edit/StudentEditModal.vue";
 
 type Props = {
   student: FirebaseDocModel<StudentModel>;
 };
 const props = defineProps<Props>();
 
-const deleteModalVisibilityState = ref<boolean>(false);
-const isDeletingState = ref<boolean>(false);
+const editModalVisibilityState = ref<boolean>(false);
 
 const name = ref<string>(props.student.data.name);
 
@@ -23,44 +23,21 @@ const onSave = async () => {
   });
 };
 
-const onDelete = async () => {
-  try {
-    isDeletingState.value = true;
-    await deleteDoc(doc(getFirestore(), "students", props.student.id));
-    deleteModalVisibilityState.value = false;
-    isDeletingState.value = false;
-  } catch (e) {
-    console.error(e);
-  }
+const onEditClose = () => {
+  editModalVisibilityState.value = false;
 };
 
-const onDeleteBtn = () => {
-  deleteModalVisibilityState.value = true;
+const onEditClick = () => {
+  editModalVisibilityState.value = true;
 };
 </script>
 
 <template>
-  <a-modal
-    :footer="null"
-    v-model:visible="deleteModalVisibilityState"
-    closable
-    :title="$t('studentsDrawer.deleteModal.Title')"
-  >
-    <a-row :gutter="[6, 6]">
-      <a-col span="24">
-        <p>{{ $t("studentsDrawer.deleteModal.Text", { name }) }}</p>
-      </a-col>
-      <a-col span="24">
-        <a-button
-          block
-          type="danger"
-          :loading="isDeletingState"
-          @click="onDelete"
-          >{{ $t("studentsDrawer.deleteModal.Delete") }}</a-button
-        >
-      </a-col>
-    </a-row>
-  </a-modal>
+  <StudentEditModal
+    :visible="editModalVisibilityState"
+    :student="props.student"
+    :onClose="onEditClose"
+  />
   <a-card hoverable>
     <a-row :gutter="[12, 6]">
       <a-col span="4">
@@ -82,9 +59,9 @@ const onDeleteBtn = () => {
         </a-button>
       </a-col>
       <a-col span="4">
-        <a-button type="danger" block @click="onDeleteBtn">
+        <a-button type="default" block @click="onEditClick">
           <template #icon>
-            <DeleteOutlined />
+            <EditOutlined />
           </template>
         </a-button>
       </a-col>
