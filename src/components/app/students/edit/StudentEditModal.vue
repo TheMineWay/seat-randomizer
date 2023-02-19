@@ -102,7 +102,7 @@ const reEnable = async () => {
     @cancel="props.onClose"
   >
     <a-row :gutter="[12, 12]">
-      <a-col span="12">
+      <a-col :xs="24" :md="12">
         <a-button
           v-if="!StudentsService.isStudentDisabled(props.student.data)"
           block
