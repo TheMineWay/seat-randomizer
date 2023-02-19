@@ -1,4 +1,6 @@
+import { Timestamp } from "firebase/firestore";
+
 export interface StudentModel {
     name: string;
-    disabled_until?: Date | null;
+    disabled_until?: Timestamp | null;
 }

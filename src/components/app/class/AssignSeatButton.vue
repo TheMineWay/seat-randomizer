@@ -4,6 +4,7 @@ import { ref, defineProps } from "vue";
 import { AssignedStudentModel } from "../../../models/students/assigned-student.model";
 import { StudentModel } from "../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
+import { StudentsService } from "../../../services/app/students/students.service";
 import { ColorHelper } from "../../../services/helpers/color.helper";
 
 type Props = {
@@ -56,7 +57,7 @@ div.center {
           hoverable
           @click="() => assign(student)"
           :style="{
-            'background-color': student.data.disabled_until
+            'background-color': StudentsService.isStudentDisabled(student.data)
               ? 'gray'
               : undefined,
           }"

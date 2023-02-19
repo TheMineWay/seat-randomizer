@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { DeleteOutlined } from "@ant-design/icons-vue";
+import { addDays } from "date-fns";
 import { deleteDoc, doc, getFirestore, setDoc } from "firebase/firestore";
 import { defineProps, ref } from "vue";
 import { StudentModel } from "../../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../../models/utils/firebase/firebase-doc.model";
+import { StudentsService } from "../../../../services/app/students/students.service";
 
 type Props = {
   visible: boolean;
@@ -40,7 +42,7 @@ const disableTilTomorrow = async () => {
     setDoc(
       doc(getFirestore(), "students", props.student.id),
       {
-        disabled_until: new Date(Date.now()),
+        disabled_until: addDays(new Date(Date.now()), 1),
       },
       {
         merge: true,
@@ -102,7 +104,7 @@ const reEnable = async () => {
     <a-row :gutter="[12, 12]">
       <a-col span="12">
         <a-button
-          v-if="!props.student.data.disabled_until"
+          v-if="!StudentsService.isStudentDisabled(props.student.data)"
           block
           @click="disableTilTomorrow"
           :loading="isDisablingState"

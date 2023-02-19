@@ -4,6 +4,7 @@ import { doc, getFirestore, updateDoc } from "@firebase/firestore";
 import { defineProps, ref } from "vue";
 import { StudentModel } from "../../../models/students/student.model";
 import { FirebaseDocModel } from "../../../models/utils/firebase/firebase-doc.model";
+import { StudentsService } from "../../../services/app/students/students.service";
 import { ColorHelper } from "../../../services/helpers/color.helper";
 import StudentEditModal from "./edit/StudentEditModal.vue";
 
@@ -41,7 +42,7 @@ const onEditClick = () => {
   <a-card
     hoverable
     :style="{
-      'background-color': props.student.data.disabled_until
+      'background-color': StudentsService.isStudentDisabled(student.data)
         ? 'gray'
         : undefined,
     }"

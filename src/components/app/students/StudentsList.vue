@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const studentsState = ref<FirebaseDocModel<StudentModel>[]>();
 
-StudentsService.onStudentsChange((data) => (studentsState.value = data));
+StudentsService.onStudentsChange((data) => (studentsState.value = data), true);
 </script>
 
 <template>
