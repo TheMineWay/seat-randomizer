@@ -38,7 +38,14 @@ const onEditClick = () => {
     :student="props.student"
     :onClose="onEditClose"
   />
-  <a-card hoverable>
+  <a-card
+    hoverable
+    :style="{
+      'background-color': props.student.data.disabled_until
+        ? 'gray'
+        : undefined,
+    }"
+  >
     <a-row :gutter="[12, 6]">
       <a-col span="4">
         <a-avatar

@@ -52,7 +52,15 @@ div.center {
       :key="student.id"
     >
       <a-col span="24">
-        <a-card hoverable @click="() => assign(student)">
+        <a-card
+          hoverable
+          @click="() => assign(student)"
+          :style="{
+            'background-color': student.data.disabled_until
+              ? 'gray'
+              : undefined,
+          }"
+        >
           <a-space>
             <a-avatar
               :style="{
